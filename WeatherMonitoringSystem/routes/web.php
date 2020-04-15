@@ -4,15 +4,24 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Auth Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/login', 'AuthController@loginView')->name('login');
+Route::post('/login', 'AuthController@loginUser');
+Route::get('/logout', 'AuthController@logout')->middleware(['auth']);
+/*
+|--------------------------------------------------------------------------
+| Dashboard Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth'])->group(function () {
+
+
+    Route::get('/', 'DashboardController@index');
+    Route::post('/add-new-device', 'DashboardController@addNewDevice');
+    Route::get('/device/{devices_id}/remove', 'DashboardController@removeDevice');
 });
