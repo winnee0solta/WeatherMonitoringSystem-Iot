@@ -18,51 +18,55 @@
     </button>
 
     {{-- data table  --}}
-    <div class="table-responsive mt-4">
-        <table class="table">
-            <thead class="text-uppercase">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Device Key</th>
-                    <th scope="col">Location</th>
-                    <th scope="col">Updated At</th>
-                    <th scope="col">Temperature</th>
-                    <th scope="col">Pressure</th>
-                    <th scope="col">Rain</th>
-                    <th scope="col">Humidity</th>
-                    <th scope="col">Soil Moisture</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (!empty($devices))
-                @foreach ($devices as $item)
-                <tr>
-                    <th scope="row">{{$loop->index + 1}}</th>
-                    <td>{{$item['device_key']}}</td>
-                    <td>{{$item['location']}}</td>
-                   <td>{{  date( "m/d/Y", strtotime($item['updated_at']))  }}</td>
-                    <td>{{$item['temperature']}}&#8451;</td>
-                    <td>{{$item['pressure']}}mb</td>
-                    <td>{{$item['rain']}}%</td>
-                    <td>{{$item['humidity']}}%</td>
-                    <td>{{$item['soil_moisture']}}%</td>
-                    <td>
-                        <div class="d-flex">
-                            <a href="/device/{{$item['devices_id']}}/remove"
-                                class="btn btn-float btn-danger btn-sm ml-1" type="button" data-toggle="tooltip"
-                                data-placement="bottom" title="Remove Device">
-                                <i class="material-icons">delete</i>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-                @endforeach
-                @endif
-            </tbody>
-        </table>
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="title h4 font-weight-bold text-uppercase">Device Lists</h5>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="text-uppercase">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Device Key</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Updated At</th>
+                            <th scope="col">Temperature</th>
+                            <th scope="col">Pressure</th>
+                            <th scope="col">Rain</th>
+                            <th scope="col">Humidity</th>
+                            <th scope="col">Soil Moisture</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!empty($devices))
+                        @foreach ($devices as $item)
+                        <tr>
+                            <th scope="row">{{$loop->index + 1}}</th>
+                            <td>{{$item['device_key']}}</td>
+                            <td>{{$item['location']}}</td>
+                            <td>{{  date( "m/d/Y", strtotime($item['updated_at']))  }}</td>
+                            <td>{{$item['temperature']}}&#8451;</td>
+                            <td>{{$item['pressure']}}mb</td>
+                            <td>{{$item['rain']}}%</td>
+                            <td>{{$item['humidity']}}%</td>
+                            <td>{{$item['soil_moisture']}}%</td>
+                            <td>
+                                <div class="d-flex">
+                                    <a href="/device/{{$item['devices_id']}}/remove" class="btn btn-float btn-danger btn-sm ml-1"
+                                        type="button" data-toggle="tooltip" data-placement="bottom" title="Remove Device">
+                                        <i class="material-icons">delete</i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                        @endif
+                    </tbody>
+                </table>
 
 
+            </div>
+        </div>
     </div>
     {{--!ends data table  --}}
 

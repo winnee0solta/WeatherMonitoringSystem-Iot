@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gym Management</title>
+    <title>Weather Monitoring System</title>
 
     <!-- CSS -->
     <!-- Add Material font (Roboto) and Material icon as needed -->
@@ -22,7 +22,7 @@
 <body>
 
     {{-- <div class="login-container  " style="background: url(/images/bg_1.png);"> --}}
-    <div class="login-container  " >
+    <div class="login-container  ">
 
         <div class="container">
             <div class="row justify-content-center pt-lg-5">

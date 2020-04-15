@@ -12,3 +12,16 @@ use Illuminate\Support\Facades\Route;
 
 //Create Initial Admin Account
 Route::get('/a5847fw5as/new-admin/{username}/{password}', 'AuthController@createAdmin');
+
+
+/*
+|--------------------------------------------------------------------------
+| For Hardware Routes
+|--------------------------------------------------------------------------
+|
+*/
+
+
+Route::get('/update-stats', 'ApiController@updateStats');
+Route::post('/weather-stats', 'ApiController@weatherStat');
+Route::get('/locations', 'ApiController@deviceLocations');
