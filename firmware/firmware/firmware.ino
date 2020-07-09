@@ -32,8 +32,8 @@ int rain_sensor = A0;
 int rain_sensor_value = 0; //variable to store RainDrop Sensor Module's output value
 
 //________________________Mention the SSID and Password____________________________________________________
-const char* ssid = "ssid_wlink";//SSID of the WiFi hotspot available
-const char* password = "password_wlink"; //Password of the WiFi
+const char* ssid = "shresthas_wlink";//SSID of the WiFi hotspot available
+const char* password = "alumanchor"; //Password of the WiFi
 
 void setup() {
   Serial.begin(9600);
@@ -58,32 +58,40 @@ void loop() {
   startReadingDHT();
   startReadingRainSensor();
   startReadingBMPSensor();
-  apiCall();
+   Serial.println("Sending data to cloud....... ");
+//  apiCall();
 }
 
 
 
 //FOR SOIL MOISTURE
 void startReadingSoilMoisture() {
-  //  Serial.print("MOISTURE LEVEL : ");
+  Serial.println("Started Reading SoilMoisture : ");
   soil_value = analogRead(soil_pin); //Takes reading from soil moisture sensor
+  Serial.print("MOISTURE LEVEL : ");
+  Serial.println(soil_value);
 }
 
 //FOR DHT
 void startReadingDHT() {
   //______________________Getting the Humidity and temperature value from DHT11____________________________
-
+  Serial.println("Started Reading Humidity : ");
   humidity = dht.readHumidity();
-
+  Serial.print("Humidity : ");
+  Serial.println(humidity);
+  Serial.println("Started Reading Temperature : ");
   temp = dht.readTemperature(); // or dht.readTemperature(true) for Fahrenheit
-
+  Serial.print("Temperature : ");
+  Serial.println(temp);
 }
 
 //FOR RAINSENSOR
 void startReadingRainSensor() {
   //_____________________________________Checking for Rain______________________________________________________
-
+  Serial.println("Started RAINSENSOR : ");
   rain_sensor_value = analogRead(rain_sensor);
+  Serial.print("RAINSENSOR : ");
+  Serial.println(rain_sensor_value);
   rain_sensor_value = constrain(rain_sensor, 150, 440);
   rain_sensor_value = map(rain_sensor, 150, 440, 1023, 0);
 
@@ -92,12 +100,14 @@ void startReadingRainSensor() {
 //FOR BMP180 Sensor
 void startReadingBMPSensor()
 {
+  Serial.println("Started Reading Pressure : ");
   if (bmp.begin())
   {
     //BMP180 is working
     //______________________Reading the value of Pressure from the BMP180__________________
     pressure =  bmp.readPressure() / 100; // Division by 100 makes it in millibars
-
+    Serial.print("Pressure : ");
+    Serial.println(pressure);
   }
 }
 
